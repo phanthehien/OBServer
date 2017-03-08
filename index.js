@@ -1,4 +1,3 @@
-
 var Hapi = require('hapi')
 var server = new Hapi.Server()
 var Joi = require('Joi')
@@ -9,7 +8,9 @@ var HapiSwagger = require('hapi-swagger')
 const Pack = require('./package');
 const hapiMongo = require('hapi-mongodb');
 
-server.connection({port: 3000}); // tell hapi which TCP Port to "listen" on
+server.connection({
+    port: 3000
+}); // tell hapi which TCP Port to "listen" on
 
 require('babel-core/register')({
     plugins: ['transform-react-jsx']
@@ -46,39 +47,38 @@ const mongoDBOptions = {
 
 const swaggerOptions = {
     info: {
-            'title': 'Test Swagger API',
-            'version': Pack.version,
-        }
+        'title': 'Test Swagger API',
+        'version': Pack.version,
+    }
 };
 
 //we need to register plugin if we want
-server.register([require('inert'), require('vision'),  {
-        'register': hapiMongo,
-        'options': mongoDBOptions
-    }, {
-        'register': HapiSwagger,
-        'options': swaggerOptions
-    }], function(err) {
-    if(err) {
+server.register([require('inert'), require('vision'), {
+    'register': hapiMongo,
+    'options': mongoDBOptions
+}, {
+    'register': HapiSwagger,
+    'options': swaggerOptions
+}], function (err) {
+    if (err) {
         throw err;
     }
-    
+
     server.views({
-            defaultExtension: 'jsx',
-            engines: {
-                jsx: engine, // support for .jsx files 
-                js: engine // support for .js 
-            },
-            relativeTo: __dirname,
-            path: Path.resolve(__dirname, 'views')
+        defaultExtension: 'jsx',
+        engines: {
+            jsx: engine, // support for .jsx files 
+            js: engine // support for .js 
+        },
+        relativeTo: __dirname,
+        path: Path.resolve(__dirname, 'views')
     });
 
     routes.register(server);
 
     server.start(function () { // start the Hapi server on your localhost
         console.log('Now Visit: http://localhost:' + server.info.port + '/YOURNAME');
-    });    
+    });
 })
 
 module.exports = server;
-
