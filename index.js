@@ -17,23 +17,23 @@ require('babel-core/register')({
 });
 
 
-// server.route({
-//     method: 'GET',        // define the method this route will handle
-//     path: '/{yourname*}', // this is how you capture route parameters in Hapi
-//     config: {
-//         description: 'Get name params',
-//         notes: 'Get name params for testing',
-//         tags: ['api'], // ADD THIS TAG,
-//         validate: {
-//             params: {
-//                     yourname: Joi.string().min(2).max(40).alphanum().required()
-//                 }
-//             },
-//     },
-//     handler: function(req, reply) { // request handler method
-//         reply('Hello ' + req.params.yourname + '!'); // reply with text.
-//     }
-// });
+server.route({
+    method: 'GET',        // define the method this route will handle
+    path: 'test/{yourname*}', // this is how you capture route parameters in Hapi
+    config: {
+        description: 'Get name params',
+        notes: 'Get name params for testing',
+        tags: ['api'], // ADD THIS TAG,
+        validate: {
+            params: {
+                    yourname: Joi.string().min(2).max(40).alphanum().required()
+                }
+            },
+    },
+    handler: function(req, reply) { // request handler method
+        reply('Hello ' + req.params.yourname + '!'); // reply with text.
+    }
+});
 
 
 const mongoDBOptions = {
