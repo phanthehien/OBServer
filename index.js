@@ -9,7 +9,7 @@ const Pack = require('./package');
 const hapiMongo = require('hapi-mongodb');
 
 server.connection({
-    port: 3000
+    port:  process.env.PORT || 3000
 }); // tell hapi which TCP Port to "listen" on
 
 require('babel-core/register')({
@@ -37,7 +37,8 @@ require('babel-core/register')({
 
 
 const mongoDBOptions = {
-    url: 'mongodb://localhost:27017/db',
+    // url: 'mongodb://localhost:27017/db',
+    url: 'mongodb://hien:123@ds125060.mlab.com:25060/obdb',
     settings: {
         poolSize: 10
     },

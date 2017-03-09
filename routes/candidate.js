@@ -48,6 +48,9 @@ module.exports = [{
         tags: ['api', 'candidate']
     },
     handler(request, reply) {
+        if(!request.payload) {
+            return reply(Boom.badData('No data from request'));
+        }
         const candidate = request.payload;
 
         var db = request.mongo.db;
