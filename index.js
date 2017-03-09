@@ -19,7 +19,7 @@ require('babel-core/register')({
 
 server.route({
     method: 'GET',        // define the method this route will handle
-    path: 'test/{yourname*}', // this is how you capture route parameters in Hapi
+    path: '/test/{yourname*}', // this is how you capture route parameters in Hapi
     config: {
         description: 'Get name params',
         notes: 'Get name params for testing',
