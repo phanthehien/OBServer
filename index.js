@@ -1,6 +1,6 @@
 var Hapi = require('hapi')
 var server = new Hapi.Server()
-var Joi = require('Joi')
+// var Joi = require('Joi')
 const Path = require('path')
 var engine = require('hapi-react-views')
 var routes = require('./routes')
@@ -24,11 +24,11 @@ server.route({
         description: 'Get name params',
         notes: 'Get name params for testing',
         tags: ['api'], // ADD THIS TAG,
-        validate: {
-            params: {
-                    yourname: Joi.string().min(2).max(40).alphanum().required()
-                }
-            },
+        // validate: {
+        //     params: {
+        //             yourname: Joi.string().min(2).max(40).alphanum().required()
+        //         }
+        //     },
     },
     handler: function(req, reply) { // request handler method
         reply('Hello ' + req.params.yourname + '!'); // reply with text.
